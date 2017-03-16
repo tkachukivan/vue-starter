@@ -1,8 +1,11 @@
+import { mapGetters } from 'vuex';
+
+
 export default {
   name: 'top-nav',
   computed: {
-    booksQuantity() {
-      return this.$store.getters.getAddedBooksQuantity;
-    }
+    ...mapGetters({
+      booksQuantity: 'getAddedBooksQuantity'
+    })
   }
 };

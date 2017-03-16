@@ -1,3 +1,5 @@
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: 'books-list',
   props: {
@@ -6,23 +8,15 @@ export default {
   },
 
   computed: {
-    books() {
-      if (this.listType === 'all') {
-        return this.$store.getters.getBooks();
-      }
-
-      if (this.listType === 'user') {
-        return this.$store.getters.getBooks('user');
-      }
-    },
-    booksPrice() {
-      return this.$store.getters.getPrice;
-    }
+    ...mapGetters({
+      books: 'getBooks',
+      booksPrice: 'getPrice'
+    })
   },
 
   methods: {
-    buyBooks() {
-      this.$store.commit('BUY');
-    }
+    ...mapMutations({
+      buyBooks: 'BUY'
+    })
   }
 };

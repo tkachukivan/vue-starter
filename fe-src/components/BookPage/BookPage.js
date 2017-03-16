@@ -1,15 +1,15 @@
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
   computed: {
-    book() {
-      return this.$store.getters.getBookById;
-    }
+    ...mapGetters({
+      book: 'getBookById'
+    })
   },
   methods: {
-    addToMy() {
-      this.$store.commit('ADD_TO_MY');
-    },
-    removeFromMy() {
-      this.$store.commit('REMOVE_FROM_MY');
-    }
+    ...mapMutations({
+      addToMy: 'ADD_TO_MY',
+      removeFromMy: 'REMOVE_FROM_MY'
+    })
   }
 };
