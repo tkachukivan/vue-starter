@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './fe-src/app.js',
+  entry: ['whatwg-fetch', './fe-src/app.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'build.js'

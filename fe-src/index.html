@@ -6,6 +6,8 @@
   </head>
   <body>
     <div id="app">
+      <top-nav></top-nav>
+      <loader v-if="load"></loader>
       <router-view></router-view>
     </div>
   </body>

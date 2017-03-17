@@ -1,0 +1,22 @@
+.header {
+  &-nav {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+
+    &__item {
+      display: block;
+      padding: 15px 20px;
+      color: #42b983;
+      text-transform: capitalize;
+      text-decoration: none;
+      border: 1px solid transparent;
+
+      &:hover {
+        border: 1px solid #42b983;
+        border-radius: 10px;
+      }
+    }
+  }
+}

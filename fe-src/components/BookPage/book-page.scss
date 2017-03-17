@@ -1,0 +1,45 @@
+.book {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+
+  &-info-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  &__name {
+    text-align: center;
+  }
+
+  &__add {
+    width: 100px;
+    height: 30px;
+    background: #09b9b2;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+
+    &:hover {
+      background: darken(#09b9b2, 20%);
+    }
+  }
+
+  &__remove {
+    width: 100px;
+    height: 30px;
+    background: #b94162;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+
+    &:hover {
+      background: darken(#b94162, 20%);
+    }
+  }
+}

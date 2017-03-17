@@ -1,10 +1,14 @@
 {
   "extends": "airbnb-base",
+  "globals": {
+    "window": true
+  },
   "rules": {
     "comma-dangle": "off",
     "no-new": "off",
     "operator-assignment": "off",
     "no-param-reassign": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "consistent-return": "off"
   }
 }

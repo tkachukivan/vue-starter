@@ -1,0 +1,53 @@
+.books-list {
+  margin: 0;
+  padding: 10px 0;
+  list-style: none;
+
+  &-wrapper {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__book-link {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    color: black;
+    text-decoration: none;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid #09b9b2;
+    }
+  }
+
+  &__item {
+    &-name {
+      color: #09b9b2;
+    }
+
+    &-price {
+      color: #3658b9;
+    }
+  }
+
+  &__buy {
+    width: 100px;
+    height: 30px;
+    float: right;
+    background: #09b9b2;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+
+    &:hover {
+      background: darken(#09b9b2, 20%);
+    }
+  }
+  &__price {
+    padding-right: 10px;
+    text-align: right;
+    color: black;
+  }
+}
