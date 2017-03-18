@@ -4,14 +4,19 @@ import Buy from './../Buy/Buy.vue';
 export default {
   name: 'books-list',
   props: {
-    listType: String,
+    listType: String
+  },
+
+  data() {
+    return {
+      buyPopUp: false
+    };
   },
 
   computed: {
     ...mapGetters({
       books: 'getBooks',
       booksPrice: 'getPriceSum',
-      buyPopUp: 'getBuyPopUpStatus'
     })
   },
 
@@ -20,6 +25,11 @@ export default {
       'buyBooks',
       'loadBooks'
     ]),
+    buy() {
+      this.buyBooks().then(() => {
+        this.buyPopUp = true;
+      });
+    }
   },
 
   created() {

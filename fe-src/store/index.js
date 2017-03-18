@@ -12,7 +12,7 @@ export default new Vuex.Store({
     booksList: null,
     loading: false,
     pricesSum: 0,
-    buyPopUp: false
+    addedBooks: 0
   },
 
   mutations,

@@ -1,25 +1,38 @@
 const { books } = require('./../model/books');
 
 const updateBook = (req, res) => {
-  const bookId = +req.params.id;
+  const bookId = req.params.id;
   const bookById = books.find(book => book.id === bookId);
 
-  console.log(`put to book with id ${bookId} and change added to ${!bookById.added}`);
-
   bookById.added = !bookById.added;
+  const type = bookById.added ? 'add' : 'remove';
 
-  res.send();
+  console.log(`put to book with id ${bookId} with type ${type}`);
+
+  res.send({
+    type
+  });
 };
 
 const getBook = (req, res) => {
-  const bookId = +req.params.id;
+  const bookId = req.params.id;
   const bookById = books.find(book => book.id === bookId);
+  const addedBooks = books.filter(book => book.added === true).length;
+
+  console.log(`get book by id ${bookId}`);
 
   if (!bookById) {
-    res.send('not found');
+    console.log(`can\`t find book with id ${bookId}`);
+    res.send({
+      addedBooks,
+      not_found: true
+    });
     return;
   }
-  res.send(bookById);
+  res.send({
+    bookById,
+    addedBooks
+  });
 };
 
 exports.updateBook = updateBook;

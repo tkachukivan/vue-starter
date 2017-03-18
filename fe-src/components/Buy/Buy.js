@@ -2,6 +2,9 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'buy',
+  props: {
+    popUp: Boolean
+  },
 
   computed: {
     ...mapGetters({
@@ -14,8 +17,9 @@ export default {
       'closeBuyPopUp'
     ]),
     closeBuy() {
+      this.buyPopUp = false;
       this.closeBuyPopUp();
-      this.$router.push({ path: '/' });
+      this.$router.push('/');
     }
   }
 };

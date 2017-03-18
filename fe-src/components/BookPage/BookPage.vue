@@ -12,10 +12,10 @@
       </div>
       <div>
         <div v-if="book.inStock">
-          <button v-if="book.added" class="book__remove" @click="toggleBookToMy">
+          <button v-if="book.added" class="book__remove" @click="toggleBook">
             remove
           </button>
-          <button v-else class="book__add" @click="toggleBookToMy">
+          <button v-else class="book__add" @click="toggleBook">
             add to my books
           </button>
         </div>

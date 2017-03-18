@@ -1,24 +1,30 @@
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
-  computed: {
-    ...mapGetters({
-      book: 'getBookById'
-    })
-  },
   methods: {
     ...mapActions([
       'toggleBookToMy',
-      'loadBooks'
-    ])
-  },
-  created() {
-    if (!this.booksList) {
-      this.loadBooks();
+      'getBookById'
+    ]),
+    toggleBook() {
+      this.toggleBookToMy().then(() => {
+        this.book.added = !this.book.added;
+      });
     }
   },
+  data() {
+    return {
+      book: {}
+    };
+  },
 
-  destroyed() {
-
+  created() {
+    this.getBookById().then((book) => {
+      if (book) {
+        this.book = book;
+      } else {
+        this.$router.push('/404');
+      }
+    });
   }
 };
