@@ -4,7 +4,7 @@
             <p class="buy__description">
                 Thank you, you bought books in sum <span>{{priceSum}}$</span>, we send order to your e-mail
             </p>
-            <button class="buy__button" @click="closeBuy">
+            <button class="button" @click="closeBuy">
                 ok
             </button>
         </div>

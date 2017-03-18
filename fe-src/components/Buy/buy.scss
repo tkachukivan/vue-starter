@@ -22,19 +22,6 @@
   border-radius: 5px;
   padding: 20px;
 
-  &__button {
-    width: 100px;
-    height: 30px;
-    background: #09b9b2;
-    text-transform: uppercase;
-    color: white;
-    border: none;
-    display: block;
-
-    &:hover {
-      background: darken(#09b9b2, 20%);
-    }
-  }
   &__description {
     text-align: center;
   }

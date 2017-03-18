@@ -21,7 +21,7 @@
       <p class="books-list__price">
         Your Books cost: {{booksPrice}}$
       </p>
-      <button  class="books-list__buy" @click="buy">
+      <button class="button books-list__buy-button" @click="buy">
         buy books
       </button>
       <buy v-if="buyPopUp" :popUp="buyPopUp"></buy>

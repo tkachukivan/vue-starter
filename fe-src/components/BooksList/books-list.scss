@@ -31,19 +31,8 @@
       color: #3658b9;
     }
   }
-
-  &__buy {
-    width: 100px;
-    height: 30px;
+  &__buy-button {
     float: right;
-    background: #09b9b2;
-    text-transform: uppercase;
-    color: white;
-    border: none;
-
-    &:hover {
-      background: darken(#09b9b2, 20%);
-    }
   }
   &__price {
     padding-right: 10px;
