@@ -1,22 +1,32 @@
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import Buy from './../Buy/Buy.vue';
 
 export default {
   name: 'books-list',
   props: {
     listType: String,
-    default: 'all'
   },
 
   computed: {
     ...mapGetters({
       books: 'getBooks',
-      booksPrice: 'getPrice'
+      booksPrice: 'getPriceSum',
+      buyPopUp: 'getBuyPopUpStatus'
     })
   },
 
   methods: {
-    ...mapMutations({
-      buyBooks: 'BUY'
-    })
+    ...mapActions([
+      'buyBooks',
+      'loadBooks'
+    ]),
+  },
+
+  created() {
+    this.loadBooks();
+  },
+
+  components: {
+    Buy
   }
 };

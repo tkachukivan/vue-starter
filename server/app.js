@@ -1,11 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+// routes
+
+const { getBooks } = require('./routes/books');
+const { updateBook, getBook } = require('./routes/book');
+const { buy } = require('./routes/buy');
+
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.get('/api/books', getBooks);
+app.put('/api/book/:id', updateBook);
+app.get('/api/book/:id', getBook);
+app.post('/api/buy', buy);
+
 
 app.use(express.static('./dist'));
 
-module.exports = app;
+exports.app = app;

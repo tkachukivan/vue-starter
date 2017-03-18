@@ -1,18 +1,24 @@
-export const getBookById = state => state.booksList.find(book => book.id === +state.route.params.id);
+export const getBookById = (state) => {
+  if (state.booksList) {
+    return state.booksList.find(book => book.id === +state.route.params.id);
+  }
+  return {};
+};
 
 export const getBooks = (state) => {
-  if (state.route.path === '/books') {
+  if (state.route.path === '/books' && state.booksList) {
     return state.booksList.filter(book => book.added === true);
   }
   return state.booksList;
 };
 
-export const getAddedBooksQuantity = state => state.booksList.filter(book => book.added === true).length;
-
-export const getPrice = state => state.booksList.reduce((sum, book) => {
-  if (book.added) {
-    sum += book.price;
+export const getAddedBooksQuantity = (state) => {
+  if (!state.booksList) {
+    return 0;
   }
+  return state.booksList.filter(book => book.added === true).length;
+};
 
-  return sum;
-}, 0);
+export const getPriceSum = state => state.pricesSum;
+
+export const getBuyPopUpStatus = state => state.buyPopUp;

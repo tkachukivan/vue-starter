@@ -27,8 +27,8 @@ new Vue({
     Loader
   },
   computed: {
-    ...mapState({
-      load: 'loading'
-    })
+    ...mapState([
+      'loading'
+    ])
   }
 }).$mount('#app');

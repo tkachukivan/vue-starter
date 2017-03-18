@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "promise-polyfill": "^6.0.2",
     "vue": "^2.2.1",
@@ -22,7 +23,6 @@
     "babel-loader": "^6.0.0",
     "babel-preset-latest": "^6.0.0",
     "babel-preset-stage-2": "^6.22.0",
-    "body-parser": "^1.17.1",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.17.1",

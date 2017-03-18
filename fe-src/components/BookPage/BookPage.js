@@ -1,4 +1,4 @@
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
@@ -7,9 +7,18 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({
-      addToMy: 'ADD_TO_MY',
-      removeFromMy: 'REMOVE_FROM_MY'
-    })
+    ...mapActions([
+      'toggleBookToMy',
+      'loadBooks'
+    ])
+  },
+  created() {
+    if (!this.booksList) {
+      this.loadBooks();
+    }
+  },
+
+  destroyed() {
+
   }
 };

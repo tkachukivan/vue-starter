@@ -17,13 +17,14 @@
         </router-link>
       </li>
     </ul>
-    <div v-if="listType === 'user' && books.length > 0">
+    <div v-if="listType === 'user' && books && books.length > 0">
       <p class="books-list__price">
         Your Books cost: {{booksPrice}}$
       </p>
       <button  class="books-list__buy" @click="buyBooks">
         buy books
       </button>
+      <buy v-if="buyPopUp"></buy>
     </div>
   </div>
 </template>

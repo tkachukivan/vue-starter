@@ -1,4 +1,4 @@
-export default [
+exports.books = [
   {
     id: 1,
     name: 'The Lightning Thief',
