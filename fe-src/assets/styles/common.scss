@@ -15,6 +15,7 @@ body {
   text-transform: uppercase;
   color: white;
   border: none;
+  outline: none;
 
   &:hover {
     background: darken(#09b9b2, 20%);
