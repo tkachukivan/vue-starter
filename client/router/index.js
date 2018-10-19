@@ -9,30 +9,30 @@ import NotFound from '../components/NotFound/NotFound.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    component: Home
-  },
-  {
-    path: '/book/:id',
-    component: BookPage,
-  },
-  {
-    path: '/books',
-    component: BooksList,
-    props: { listType: 'user' }
-  },
-  {
-    path: '/404',
-    component: NotFound
-  },
-  {
-    path: '*',
-    redirect: '/404'
-  }
+    {
+        path: '/',
+        component: Home
+    },
+    {
+        path: '/book/:id',
+        component: BookPage,
+    },
+    {
+        path: '/books',
+        component: BooksList,
+        props: { listType: 'user' }
+    },
+    {
+        path: '/404',
+        component: NotFound
+    },
+    {
+        path: '*',
+        redirect: '/404'
+    }
 ];
 
 export default new VueRouter({
-  mode: 'history',
-  routes
+    mode: 'history',
+    routes
 });

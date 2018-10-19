@@ -14,21 +14,21 @@ import './main.scss';
 
 // promise polyfill
 if (!window.Promise) {
-  window.Promise = Promise;
+    window.Promise = Promise;
 }
 
 sync(store, router);
 
 new Vue({
-  store,
-  router,
-  components: {
-    TopNav,
-    Loader
-  },
-  computed: {
-    ...mapState([
-      'loading'
-    ])
-  }
+    store,
+    router,
+    components: {
+        TopNav,
+        Loader
+    },
+    computed: {
+        ...mapState([
+            'loading'
+        ])
+    }
 }).$mount('#app');

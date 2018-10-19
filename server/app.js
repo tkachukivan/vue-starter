@@ -1,37 +1,48 @@
 const express = require('express');
+const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
-const mongoose = require('mongoose');
 
-const nConf = require('./config/n-conf_init.js');
-
-// controllers
-
-const { getBooks } = require('./controllers/books');
-const { updateBook, getBook } = require('./controllers/book');
-const { buy } = require('./controllers/buy');
+const { connectDB } = require('./model');
+const routes = require('./routes');
 
 const app = express();
+// connect mongoDb
+connectDB();
 
-let databaseUrl = nConf.get('database_url');
-databaseUrl = databaseUrl.replace('<dbuser>', nConf.get('database_user')).replace('<dbpassword>', nConf.get('database_password'));
+app.use(logger('dev'));
 
-mongoose.Promise = Promise;
-
-mongoose.connect(databaseUrl);
-
-app.use('/', express.static(path.join(__dirname, './../dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// return always index.html for front-end router
+app.use('/', express.static(path.join(__dirname, './../dist')));
+app.use('/', routes);
 
-app.get('/api/books', getBooks);
-app.put('/api/book/:id', updateBook);
-app.get('/api/book/:id', getBook);
-app.post('/api/buy', buy);
-
+// let frontend router deal with 404 errors
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './../dist/index.html'));
+    res.sendFile(path.join(__dirname, './../dist/index.html'));
 });
 
-exports.app = app;
+/* app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+}); */
+
+// error handler
+app.use((err, req, res) => {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    console.log(err);
+
+    res.status(err.status || 500);
+    res.json({
+        error: err.message
+    });
+});
+
+module.exports = app;

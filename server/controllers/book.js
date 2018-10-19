@@ -1,51 +1,43 @@
-const Book = require('./../model/Book');
+const Book = require('../model/BookModel');
 
-const updateBook = (req, res) => {
-  console.log(`put to book with id ${req.params.id}`);
-  let type;
-  Book.findOne({ _id: req.params.id })
-    .then((book) => {
-      book.added = !book.added;
-      type = book.added ? 'add' : 'remove';
+const updateBook = async (req, res) => {
+    try {
+        const book = await Book.findOne({ _id: req.params.id });
+        book.added = !book.added;
+        const type = book.added ? 'add' : 'remove';
 
-      console.log(`put to book with id ${req.params.id} with type ${type}`);
-      return book.save();
-    })
-    .then(() => {
-      res.send({
-        type
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(err);
-    });
+        await book.save();
+
+        res.send({
+            type
+        });
+    } catch (err) {
+        console.error(err);
+        res.send(err);
+    }
 };
 
-const getBook = (req, res) => {
-  console.log(`get book by id ${req.params.id}`);
+const getBook = async (req, res) => {
+    let addedBooks = 0;
+    try {
+        const books = await Book.find();
+        addedBooks = books.filter(book => book.added === true).length;
+        const bookById = await Book.findOne({ _id: req.params.id });
 
-  let addedBooks;
-  Book.find()
-    .then((books) => {
-      addedBooks = books.filter(book => book.added === true).length;
-      return Book.findOne({ _id: req.params.id });
-    })
-    .then((bookById) => {
-      res.send({
-        bookById,
-        addedBooks
-      });
-    })
-    .catch((err) => {
-      console.log(`can\`t find book with id ${req.params.id}`);
-      console.log(err);
-      res.send({
-        addedBooks,
-        not_found: true,
-        err
-      });
-    });
+        res.send({
+            bookById,
+            addedBooks
+        });
+    } catch (err) {
+        console.error(`can\`t find book with id ${req.params.id}`);
+        console.error(err);
+
+        res.send({
+            addedBooks,
+            not_found: true,
+            err
+        });
+    }
 };
 
 exports.updateBook = updateBook;

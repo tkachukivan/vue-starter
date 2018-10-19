@@ -1,34 +1,25 @@
-const Book = require('./../model/Book');
+const Book = require('../model/BookModel');
 
-const buy = (req, res) => {
-  let pricesSum;
+const buy = async (req, res) => {
+    try {
+        const books = await Book.find();
+        let pricesSum = 0;
 
-  Book.find()
-    .then((books) => {
-      pricesSum = books.reduce((sum, book) => {
-        if (book.added) {
-          sum += book.price;
-          book.added = false;
+        books.forEach(async (book) => {
+            if (book.added) {
+                pricesSum += book.price;
+                book.added = false;
+                await book.save();
+            }
+        });
 
-          book.save()
-            .catch((err) => {
-              res.send(err);
-              throw Error(`can\`t save changes to book ${book['_id']}`);
-            });
-        }
-
-        return sum;
-      }, 0);
-
-      console.log(`buy request on sum ${pricesSum}`);
-      res.send({
-        pricesSum
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.send(error);
-    });
+        res.send({
+            pricesSum
+        });
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
 };
 
 exports.buy = buy;

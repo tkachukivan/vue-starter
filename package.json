@@ -6,13 +6,19 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "run-server": "node ./server/bin/www.js",
+    "run-server-dev": "nodemon ./server/bin/www.js",
+    "lint": "eslint ./server ./client -c ./.eslintrc"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
+    "debug": "^4.1.0",
     "express": "^4.15.2",
     "mongoose": "^4.9.3",
+    "morgan": "^1.9.1",
     "nconf": "^0.8.4",
+    "nodemon": "^1.18.4",
     "promise-polyfill": "^6.0.2",
     "vue": "^2.2.1",
     "vue-router": "^2.3.0",

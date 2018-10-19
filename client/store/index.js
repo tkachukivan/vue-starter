@@ -8,14 +8,14 @@ import * as actions from './actions';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    booksList: null,
-    loading: false,
-    pricesSum: 0,
-    addedBooks: 0
-  },
+    state: {
+        booksList: null,
+        loading: false,
+        pricesSum: 0,
+        addedBooks: 0
+    },
 
-  mutations,
-  getters,
-  actions
+    mutations,
+    getters,
+    actions
 });
