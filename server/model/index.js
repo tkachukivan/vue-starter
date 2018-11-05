@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const nConf = require('../config/n-conf_init.js');
 
+mongoose.Promise = Promise;
+
 let connectionString = nConf.get('database_url');
 connectionString = connectionString.replace('<dbuser>', nConf.get('database_user')).replace('<dbpassword>', nConf.get('database_password'));
 

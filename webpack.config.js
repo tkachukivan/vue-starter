@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: ['whatwg-fetch', './client/app.js'],
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './public'),
     publicPath: '/',
     filename: 'build.js'
   },

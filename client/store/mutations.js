@@ -1,8 +1,8 @@
-export const TOGGLE_BOOK_TO_MY = (state) => {
+export const TOGGLE_BOOK_TO_MY = (state, payload) => {
     if (state.booksList) {
         state.booksList.forEach((book) => {
-            if (book.id === state.route.params.id) {
-                book.added = !book.added;
+            if (book.id === payload.id) {
+                book.added = payload.added;
             }
         });
     }
@@ -20,13 +20,14 @@ export const LOAD_BOOKS = (state, payload) => {
 
 export const COUNT_PRICES_SUM = (state) => {
     if (state.booksList) {
-        state.pricesSum = state.booksList.reduce((sum, book) => {
+        const sumResult = state.booksList.reduce((sum, book) => {
             if (book.added) {
                 sum += book.price;
             }
 
             return sum;
         }, 0);
+        state.pricesSum = Math.round(sumResult * 100) / 100;
     }
 };
 

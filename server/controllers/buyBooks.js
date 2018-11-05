@@ -1,6 +1,6 @@
 const Book = require('../model/BookModel');
 
-const buy = async (req, res) => {
+const buyBooks = async (req, res) => {
     try {
         const books = await Book.find();
         let pricesSum = 0;
@@ -22,4 +22,4 @@ const buy = async (req, res) => {
     }
 };
 
-exports.buy = buy;
+exports.buyBooks = buyBooks;

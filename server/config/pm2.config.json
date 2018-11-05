@@ -1,0 +1,17 @@
+{
+    "apps": [
+        {
+            "script": "server/bin/www.js",
+            "name": "books-app",
+            "max_memory_restart":"200M",
+            "watch": ["server/config/config.json"],
+            "watch_options": {
+                "usePolling": true
+            },
+            "instances": "2",
+            "log": "logs/books-app-logs.json",
+            "log_type": "json",
+            "args": []
+        }
+    ]
+}

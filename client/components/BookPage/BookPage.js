@@ -7,9 +7,8 @@ export default {
             'getBookById'
         ]),
         toggleBook() {
-            this.toggleBookToMy().then(() => {
-                this.book.added = !this.book.added;
-            });
+            this.book.added = !this.book.added;
+            this.toggleBookToMy(this.book.added);
         }
     },
     data() {

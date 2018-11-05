@@ -9,6 +9,9 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "run-server": "node ./server/bin/www.js",
     "run-server-dev": "nodemon ./server/bin/www.js",
+    "run-server-pm2": "pm2 start ./server/config/pm2.config.json",
+    "run-server-pm2-docker": "pm2 start ./server/config/pm2.config.docker.json",
+    "stop-pm2": "pm2 stop books-app",
     "lint": "eslint ./server ./client -c ./.eslintrc"
   },
   "dependencies": {

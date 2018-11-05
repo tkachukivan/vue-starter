@@ -86,6 +86,6 @@ function onListening() {
     const bind = typeof addr === 'string'
         ? `pipe ${addr}`
         : `port ${addr.port}`;
-    debug('Server was starter');
-    debug(`Listening on ${bind}`);
+    console.log('Server was starter');
+    console.log(`Listening on ${bind}`);
 }

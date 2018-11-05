@@ -19,7 +19,7 @@ export const loadBooks = ({ commit, state }) => {
 
 export const getBookById = ({ commit, state }) => {
     commit('TOGGLE_LOADER');
-    return fetch(`/api/book/${state.route.params.id}`)
+    return fetch(`/api/books/${state.route.params.id}`)
         .then(res => res.json())
         .then((data) => {
             commit('SET_ADDED_BOOKS', {
@@ -37,21 +37,21 @@ export const getBookById = ({ commit, state }) => {
         });
 };
 
-export const toggleBookToMy = ({ commit, state }) => {
+export const toggleBookToMy = ({ commit, state }, isAdded) => {
     commit('TOGGLE_LOADER');
 
-    return fetch(`/api/book/${state.route.params.id}`, {
+    return fetch(`/api/books/${state.route.params.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({ added: isAdded })
     })
-        .then(res => res.json())
-        .then(({ type }) => {
-            commit('TOGGLE_BOOK_TO_MY');
+        .then(() => {
+            commit('TOGGLE_BOOK_TO_MY', { id: state.route.params.id, isAdded });
             commit('COUNT_PRICES_SUM');
             commit('SET_ADDED_BOOKS', {
-                type
+                type: isAdded ? 'add' : 'remove'
             });
             commit('TOGGLE_LOADER');
         }).catch(() => {
@@ -61,7 +61,7 @@ export const toggleBookToMy = ({ commit, state }) => {
 
 export const buyBooks = ({ commit }) => {
     commit('TOGGLE_LOADER');
-    return fetch('/api/buy', {
+    return fetch('/api/buy-books', {
         method: 'POST'
     }).then(res => res.json()).then(({ pricesSum }) => {
         commit('TOGGLE_LOADER');
