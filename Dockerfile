@@ -9,6 +9,8 @@ RUN mkdir -p /var/log/nodejs
 VOLUME ["/var/log/nodejs"]
 
 WORKDIR /app
+RUN apk update
+RUN apk add vim
 
 # First copy package.json and run npm i.
 # That way docker will cache this, and we won't need to do npm i every time we change any other file

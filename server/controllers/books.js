@@ -2,23 +2,12 @@ const Book = require('../model/BookModel');
 
 const getBooks = async (req, res) => {
     try {
-        const books = await Book.find();
+        const books = await Book.find().select('id author name added price');
         const addedBooks = books.filter(book => book.added === true).length;
-        const booksArray = [];
-
-        books.forEach((book) => {
-            booksArray.push({
-                id: book.id,
-                author: book.author,
-                name: book.name,
-                added: book.added,
-                price: book.price
-            });
-        });
 
         res.send({
-            booksArray,
-            addedBooks
+            books,
+            addedBooks,
         });
     } catch (error) {
         console.error(error);
@@ -28,20 +17,21 @@ const getBooks = async (req, res) => {
 
 const getBookById = async (req, res) => {
     try {
-        const books = await Book.find();
-        const addedBooks = books.filter(book => book.added === true).length;
-        const bookById = await Book.findOne({ _id: req.params.id });
+        const addedBooks = await Book.find({ added: true })
+                                    .count();
+
+        const book = await Book.findOne({ _id: req.params.id });
 
         res.send({
-            bookById,
-            addedBooks
+            book,
+            addedBooks,
         });
     } catch (err) {
         console.error(err);
 
         res.send({
             not_found: true,
-            err
+            err,
         });
     }
 };
@@ -54,7 +44,7 @@ const updateBookById = async (req, res) => {
 
         await book.save();
 
-        res.send();
+        res.send(book);
     } catch (err) {
         console.error(err);
         res.send(err);

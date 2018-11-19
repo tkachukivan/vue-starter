@@ -3,8 +3,8 @@ export const loadBooks = ({ commit, state }) => {
         commit('TOGGLE_LOADER');
         fetch('/api/books')
             .then(res => res.json())
-            .then(({ booksArray, addedBooks }) => {
-                commit('LOAD_BOOKS', booksArray);
+            .then(({ books, addedBooks }) => {
+                commit('LOAD_BOOKS', books);
                 commit('COUNT_PRICES_SUM');
                 commit('SET_ADDED_BOOKS', {
                     type: 'set',
@@ -30,7 +30,7 @@ export const getBookById = ({ commit, state }) => {
             if (data.not_found) {
                 return false;
             }
-            return data.bookById;
+            return data.book;
         })
         .catch(() => {
             commit('TOGGLE_LOADER');

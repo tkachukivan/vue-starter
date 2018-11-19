@@ -5,7 +5,6 @@
  */
 
 const app = require('../app');
-const debug = require('debug')('books-node:server');
 const http = require('http');
 
 /**
