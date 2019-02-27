@@ -5,11 +5,13 @@ const buyBooks = async (req, res) => {
         const books = await Book.find({ added: true });
         let pricesSum = 0;
 
-        books.forEach(async (book) => {
+        const booksUpdateRequests = books.map(async (book) => {
             pricesSum += book.price;
             book.added = false;
-            await book.save();
+            return book.save();
         });
+
+        await Promise.all(booksUpdateRequests);
 
         res.send({
             pricesSum
